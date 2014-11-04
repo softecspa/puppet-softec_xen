@@ -1,0 +1,50 @@
+#!/bin/sh
+
+# GENERATED WITH PUPPET using /modules/xen/files/network/network-multi-vlan 
+
+#============================================================================
+# Xen vlan bridge start/stop script.
+# Xend calls a network script when it starts.
+# The script name to use is defined in /etc/xen/xend-config.sxp
+# in the network-script field.
+#
+# This script creates multiple bridges to segregate individual domUs to 
+# separate VLANs. Customize to fit your needs.
+#
+# Usage:
+#
+# network-multi-vlan (start|stop|status)
+#
+#============================================================================
+
+dir=$(dirname "$0")
+
+# To make the tagged interface available to some DomUs, create the default
+# bridge. Comment this out to only make vlan-based bridges available.
+# "$dir/network-bridge" "$@" vifnum=0
+
+# Vlan302 - str-data: necessaria alle VM per mount delle share NFS da storage
+"$dir/network-bridge-vlan" "$@" vlan=302 bridge=strbr netdev=eth0
+
+# 01/04/2011 lcocchi:
+#  aggiunto Vlan304 - str-conf per test 'private storage' su SequoiaQuattro
+"$dir/network-bridge-vlan" "$@" vlan=304 bridge=strconf netdev=eth0
+
+# Other Vlan
+"$dir/network-bridge-vlan" "$@" vlan=100 bridge=br100 netdev=eth1
+"$dir/network-bridge-vlan" "$@" vlan=101 bridge=br101 netdev=eth1
+"$dir/network-bridge-vlan" "$@" vlan=114 bridge=br114 netdev=eth1
+"$dir/network-bridge-vlan" "$@" vlan=115 bridge=br115 netdev=eth1
+"$dir/network-bridge-vlan" "$@" vlan=118 bridge=br118 netdev=eth1
+"$dir/network-bridge-vlan" "$@" vlan=121 bridge=br121 netdev=eth1
+"$dir/network-bridge-vlan" "$@" vlan=122 bridge=br122 netdev=eth1
+"$dir/network-bridge-vlan" "$@" vlan=127 bridge=br127 netdev=eth1
+"$dir/network-bridge-vlan" "$@" vlan=200 bridge=br200 netdev=eth1
+"$dir/network-bridge-vlan" "$@" vlan=202 bridge=br202 netdev=eth1
+"$dir/network-bridge-vlan" "$@" vlan=205 bridge=br205 netdev=eth1
+"$dir/network-bridge-vlan" "$@" vlan=207 bridge=br207 netdev=eth1
+"$dir/network-bridge-vlan" "$@" vlan=208 bridge=br208 netdev=eth1
+"$dir/network-bridge-vlan" "$@" vlan=210 bridge=br210 netdev=eth1
+"$dir/network-bridge-vlan" "$@" vlan=212 bridge=br212 netdev=eth1
+"$dir/network-bridge-vlan" "$@" vlan=215 bridge=br215 netdev=eth1
+

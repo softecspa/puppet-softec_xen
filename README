@@ -1,9 +1,3 @@
-puppet-softec\_xen
-=================
-
-La classe installa xen in base alle necessità softec. Utilizzata solo per retrocompatibilità, da ritenersi inaffidabile!
-
-
 Il modulo Xen esegue alcune operazioni al fine di automatizzare la creazione di un nodo Xen (dom0).
 
  * Viene controllata la presenza e se assenti vengono installati i pacchetti:
@@ -23,7 +17,7 @@ Il modulo Xen esegue alcune operazioni al fine di automatizzare la creazione di 
  * Viene pushato lo script xend-config.sxp, dove viene definita la gestione del networking, la memoria max del dom0, etc..
 
  * Vengono cambiati alcuni parametri del kernel in relazione al dom0 attraverso il file grub.conf:
-  * dom0\_mem=1024M dom0\_max\_vcpus=1 dom0\_vcpus\_pin      cpu pinning del dom0 su cpu 0 e utilizzo max di memoria ad 1G
+  * dom0_mem=1024M dom0_max_vcpus=1 dom0_vcpus_pin      cpu pinning del dom0 su cpu 0 e utilizzo max di memoria ad 1G
   * console=tty0 netloop.nloopbacks=0                   viene specificato che i bridge non possono bindare sul loopback
 
  * Vengono definiti alcuni valori per grub:
