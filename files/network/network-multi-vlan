@@ -47,4 +47,6 @@ dir=$(dirname "$0")
 "$dir/network-bridge-vlan" "$@" vlan=210 bridge=br210 netdev=eth1
 "$dir/network-bridge-vlan" "$@" vlan=212 bridge=br212 netdev=eth1
 "$dir/network-bridge-vlan" "$@" vlan=215 bridge=br215 netdev=eth1
+"$dir/network-bridge-vlan" "$@" vlan=216 bridge=br216 netdev=eth1
+"$dir/network-bridge-vlan" "$@" vlan=217 bridge=br217 netdev=eth1
 
